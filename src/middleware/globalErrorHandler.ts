@@ -10,6 +10,12 @@ import { handleValidationError } from '../allErrorHelp/handleValidationError';
 import { handleDuplicateError } from '../allErrorHelp/handleDuplicateError';
 import { handleError } from '../allErrorHelp/handleError';
 
+// type ErrorMessage = {
+//   success: boolean
+//   message: string
+//   error: any
+// }
+
 export const globalErrorHandler = (
   err: any,
   req: Request,
