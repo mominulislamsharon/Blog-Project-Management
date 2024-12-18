@@ -1,11 +1,10 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 import config from './config';
 import app from './app';
 
-
 async function server() {
   try {
-    await mongoose.connect(config.database_url as string)
+    await mongoose.connect(config.database_url as string);
 
     // server running on
     app.listen(config.port, () => {
