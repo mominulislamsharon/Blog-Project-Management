@@ -14,7 +14,7 @@ const sendResponse = <T>(res: Response, data: TSuccessResponse<T>) => {
     message: data.message,
     statusCode: data.statusCode,
     data: data.data,
-  });
-};
+  })
+}
 
 export default sendResponse;
