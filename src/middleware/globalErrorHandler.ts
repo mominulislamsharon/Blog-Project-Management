@@ -9,12 +9,13 @@ import { handleCastError } from '../allErrorHelp/handleCastError';
 import { handleValidationError } from '../allErrorHelp/handleValidationError';
 import { handleDuplicateError } from '../allErrorHelp/handleDuplicateError';
 import { handleError } from '../allErrorHelp/handleError';
+import { StatusCodes } from 'http-status-codes';
+import config from '../config';
 
-// type ErrorMessage = {
-//   success: boolean
-//   message: string
-//   error: any
-// }
+type ErrorMessage = {
+  message: string;
+  path: string | number;
+};
 
 export const globalErrorHandler = (
   err: any,
@@ -22,6 +23,16 @@ export const globalErrorHandler = (
   res: Response,
   next: NextFunction,
 ) => {
+  const statusCode = StatusCodes.INTERNAL_SERVER_ERROR;
+  const message = 'Something went wrong!';
+
+  const errorSources: ErrorMessage[] = [
+    {
+      message: message,
+      path: err?.path || '',
+    },
+  ];
+
   if (err.name && err.name === 'ZodError') {
     handleZodError(err, res);
   } else if (err instanceof mongoose.Error.CastError) {
@@ -33,4 +44,12 @@ export const globalErrorHandler = (
   } else if (err instanceof Error) {
     handleError(err, res);
   }
+  // Log the error in the server's console
+  res.status(statusCode).json({
+    success: false,
+    message,
+    err,
+    errorSources,
+    stack: config.NODE_ENV === 'development' && err.stack ? err.stack : null,
+  });
 };

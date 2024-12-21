@@ -7,5 +7,7 @@ export const handleCastError = (err: any, res: Response) => {
     success: false,
     message: err.message,
     error: err,
+    stack: err.stack ? err.stack : null,
   });
 };
+

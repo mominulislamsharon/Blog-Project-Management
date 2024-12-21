@@ -21,7 +21,9 @@ class QueryBuilder<T> {
         ),
       });
     }
+    
     return this;
+ 
   }
 
   filter() {
@@ -31,7 +33,7 @@ class QueryBuilder<T> {
     excludingImportant.forEach((key) => delete queryObj[key]);
 
     if (this.query?.filter) {
-      queryObj['authorId'] = this.query.filter;
+      queryObj['author'] = this.query.filter;
     }
 
     this.modelQuery = this.modelQuery.find(queryObj);
@@ -54,5 +56,9 @@ class QueryBuilder<T> {
     return this;
   }
 }
+
+
+
+
 
 export default QueryBuilder;
