@@ -5,7 +5,7 @@ type TSuccessResponse<T> = {
   success: boolean;
   message?: string;
   token?: string;
-  data: T;
+  data?: T;
 };
 
 const sendResponse = <T>(res: Response, data: TSuccessResponse<T>) => {
@@ -14,9 +14,9 @@ const sendResponse = <T>(res: Response, data: TSuccessResponse<T>) => {
     success: true,
     message: data.message,
     statusCode: data.statusCode,
-    token: data.token, 
+    token: data.token,
     data: data.data,
-  })
-}
+  });
+};
 
 export default sendResponse;

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-this-alias */
 import { model, Schema } from 'mongoose';
 import { IUser } from './user.interface';
@@ -39,10 +40,17 @@ const userSchema = new Schema<IUser>(
 userSchema.pre('save', async function (next) {
   const user = this;
 
-  user.password = await bcrypt.hash(
-    user.password,
-    Number(config.bcrypt_slat_rounds),
-  );
+  if (user.isModified('password')) {
+    if (!user.password || typeof user.password !== 'string') {
+      return next(new Error('Password is required and must be a valid string'));
+    }
+
+    user.password = await bcrypt.hash(
+      user.password,
+      Number(config.bcrypt_slat_rounds),
+    );
+  }
+
   next();
 });
 

@@ -7,6 +7,6 @@ export const handleError = (err: any, res: Response) => {
     success: false,
     message: err.message,
     error: err,
-    stack: err.stack ? err.stack : null
+    stack: err.stack ? err.stack : null,
   });
 };

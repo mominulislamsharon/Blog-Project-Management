@@ -10,4 +10,3 @@ export const handleCastError = (err: any, res: Response) => {
     stack: err.stack ? err.stack : null,
   });
 };
-

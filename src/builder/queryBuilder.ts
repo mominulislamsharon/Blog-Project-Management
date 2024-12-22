@@ -21,9 +21,8 @@ class QueryBuilder<T> {
         ),
       });
     }
-    
+
     return this;
- 
   }
 
   filter() {
@@ -35,7 +34,6 @@ class QueryBuilder<T> {
     if (this.query?.filter) {
       queryObj['author'] = this.query.filter;
     }
-
     this.modelQuery = this.modelQuery.find(queryObj);
 
     return this;
@@ -56,9 +54,5 @@ class QueryBuilder<T> {
     return this;
   }
 }
-
-
-
-
 
 export default QueryBuilder;

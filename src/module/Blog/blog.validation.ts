@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
- const createBlogSchema = z.object({
+const createBlogSchema = z.object({
   title: z
     .string()
     .min(3, 'Title must be at least 3 characters')
@@ -10,7 +10,7 @@ import { z } from 'zod';
   isPublished: z.boolean().optional(),
 });
 
- const updateBlogSchema = z.object({
+const updateBlogSchema = z.object({
   title: z.string().min(3).max(100).optional(),
   content: z.string().min(10).optional(),
   isPublished: z.boolean().optional(),
@@ -19,4 +19,4 @@ import { z } from 'zod';
 export const blogValidations = {
   createBlogSchema,
   updateBlogSchema,
-}
+};

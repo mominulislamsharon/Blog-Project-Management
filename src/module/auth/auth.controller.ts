@@ -14,7 +14,6 @@ const register = catchAsync(async (req, res) => {
   });
 });
 
-
 const login = catchAsync(async (req, res) => {
   const result = await AuthService.login(req.body);
 
@@ -22,7 +21,7 @@ const login = catchAsync(async (req, res) => {
     success: true,
     message: 'Login successful',
     statusCode: StatusCodes.OK,
-    data:{ token: result.token},
+    data: { token: result.token },
   });
 });
 

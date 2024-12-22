@@ -4,6 +4,7 @@ import notFound from './middleware/notFound';
 import { BlogRotues } from './module/Blog/blog.route';
 import { userRoutes } from './module/User/user.route';
 import { authRouters } from './module/auth/auth.route';
+import { AdminRoutes } from './module/Admin/admin.route';
 
 const app = express();
 
@@ -16,12 +17,13 @@ app.use('/api/blogs', BlogRotues);
 
 // user middlewares
 
-app.use('/api/users', userRoutes)
+app.use('/api/users', userRoutes);
 
 // auth middlewares
-app.use('/api/auth', authRouters)
+app.use('/api/auth', authRouters);
 
-
+// admin middlewares
+app.use('/api/admin', AdminRoutes);
 
 app.get('/', (req: Request, res: Response) => {
   res.send({

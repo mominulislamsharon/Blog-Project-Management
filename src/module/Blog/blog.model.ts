@@ -1,3 +1,4 @@
+'mongoose';
 import { model, Schema } from 'mongoose';
 import { IBlog } from './blog.interface';
 
