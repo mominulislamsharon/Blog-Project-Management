@@ -35,7 +35,6 @@ class QueryBuilder<T> {
       queryObj['author'] = this.query.filter;
     }
     this.modelQuery = this.modelQuery.find(queryObj);
-
     return this;
   }
 
